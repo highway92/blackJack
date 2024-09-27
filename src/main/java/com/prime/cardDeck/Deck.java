@@ -1,10 +1,10 @@
 package com.prime.cardDeck;
 
-
 import java.util.Random;
 
 public class Deck {
     private final int numberOfCards = 52;
+
     private Card[] cards = new Card[numberOfCards];
 
     private void init() {
@@ -29,11 +29,12 @@ public class Deck {
         }
     }
 
+    public Card[] getCards() {
+        return cards.clone();
+    }
+
     public Deck() {
         this.init();
-        for(Card card : cards) {
-            System.out.println(card);
-        }
     }
 
 

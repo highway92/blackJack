@@ -1,5 +1,7 @@
 package com.prime.cardDeck;
 
+import lombok.Getter;
+
 public enum CardValue {
     ACE(1),
     TWO(2),
@@ -15,7 +17,8 @@ public enum CardValue {
     QUEEN(10),
     KING(10);
 
-    private int value;
+    @Getter
+    private final int value;
 
     private CardValue(int value) {
         this.value = value;
