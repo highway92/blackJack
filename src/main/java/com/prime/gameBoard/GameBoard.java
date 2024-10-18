@@ -24,16 +24,11 @@ public class GameBoard {
                 isGatheringEnd = true;
                 break;
             }
-            addPlayer();
+            Player newPlayer = new Player(controller.addPlayerName(),deck.pickCard(),deck.pickCard());
+            players.add(newPlayer);
             boolean addMorePlayer = controller.addMorePlayer();
             isGatheringEnd = !addMorePlayer;
         }
-    }
-
-    private void addPlayer() {
-        String playerName = controller.addPlayerName();
-        Player newPlayer = new Player(playerName,deck.pickCard(),deck.pickCard());
-        players.add(newPlayer);
     }
 
 
