@@ -13,10 +13,8 @@ public class Player {
     private final List<Card> hand = new ArrayList<>();
     private boolean done = false;
 
-    public Player(String name, Card firstCard, Card secondCard) {
+    public Player(String name) {
         this.name = name;
-        hand.add(firstCard);
-        hand.add(secondCard);
     }
 
     public void hit(Card card) {

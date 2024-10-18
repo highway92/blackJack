@@ -24,7 +24,7 @@ public class GameBoard {
                 isGatheringEnd = true;
                 break;
             }
-            Player newPlayer = new Player(controller.addPlayerName(),deck.pickCard(),deck.pickCard());
+            Player newPlayer = new Player(controller.addPlayerName());
             players.add(newPlayer);
             boolean addMorePlayer = controller.addMorePlayer();
             isGatheringEnd = !addMorePlayer;
