@@ -3,7 +3,6 @@ package com.prime.gameBoard;
 import com.prime.cardDeck.Deck;
 import com.prime.player.Player;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +10,10 @@ public class GameBoard {
 
     private List<Player> players = new ArrayList<Player>();
     private Deck deck = new Deck();
-    private Scanner scanner = new Scanner(System.in);
+    private Controller controller;
 
-    public GameBoard() {
-        gatherPlayers();
+    public GameBoard(Controller controller) {
+        this.controller = controller;
     }
 
     public void gatherPlayers() {
@@ -26,15 +25,13 @@ public class GameBoard {
                 break;
             }
             addPlayer();
-            System.out.println("Do you want to add more player (true / false)");
-            boolean addMorePlayer = scanner.nextBoolean();
+            boolean addMorePlayer = controller.addMorePlayer();
             isGatheringEnd = !addMorePlayer;
         }
     }
 
     private void addPlayer() {
-        System.out.println("Enter player name: ");
-        String playerName = scanner.next();
+        String playerName = controller.addPlayerName();
         Player newPlayer = new Player(playerName,deck.pickCard(),deck.pickCard());
         players.add(newPlayer);
     }
