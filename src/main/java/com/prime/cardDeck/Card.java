@@ -14,6 +14,7 @@ public class Card {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(trumpSign.name());
+        builder.append(" ");
         builder.append(cardValue.name());
         return builder.toString();
     }

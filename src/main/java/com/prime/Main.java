@@ -1,10 +1,8 @@
 package com.prime;
-
-import com.prime.cardDeck.Deck;
+import com.prime.gameBoard.GameBoard;
 
 public class Main {
     public static void main(String[] args) {
-        new Deck();
-        System.out.println("Hello world!");
+        new GameBoard();
     }
 }

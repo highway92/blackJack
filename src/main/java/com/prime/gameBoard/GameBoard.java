@@ -3,7 +3,7 @@ package com.prime.gameBoard;
 import com.prime.cardDeck.Deck;
 import com.prime.player.Player;
 
-import java.io.Console;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +11,33 @@ public class GameBoard {
 
     private List<Player> players = new ArrayList<Player>();
     private Deck deck = new Deck();
+    private Scanner scanner = new Scanner(System.in);
 
-    private void gatherPlayer() {
-        if(players.size() > 4) {
-            // todo 최대 게임 가능인원은 4명으로 4명이상이 등록하려고 할 경우 게임을 시작해야함
+    public GameBoard() {
+        gatherPlayers();
+    }
+
+    public void gatherPlayers() {
+        System.out.println("Gathering players for Black Jack");
+        boolean isGatheringEnd = false;
+        while (!isGatheringEnd){
+            if(players.size() >= 4) {
+                isGatheringEnd = true;
+                break;
+            }
+            addPlayer();
+            System.out.println("Do you want to add more player (true / false)");
+            boolean addMorePlayer = scanner.nextBoolean();
+            isGatheringEnd = !addMorePlayer;
         }
-        String playerName = "";
-        Console console = System.console();
-        playerName = console.readLine("Enter Player name: ");
+    }
+
+    private void addPlayer() {
+        System.out.println("Enter player name: ");
+        String playerName = scanner.next();
         Player newPlayer = new Player(playerName,deck.pickCard(),deck.pickCard());
         players.add(newPlayer);
     }
+
+
 }
