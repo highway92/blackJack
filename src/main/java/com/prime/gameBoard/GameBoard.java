@@ -46,7 +46,7 @@ public class GameBoard {
         }
         Thread.sleep(1000);
         System.out.println("Distributing first card to dealer.. \n");
-        dealer.getHiddenCard(deck.pickCard());
+        dealer.hit(deck.pickCard());
         Thread.sleep(1000);
 
         System.out.println("Distributing second card to each players.. \n");

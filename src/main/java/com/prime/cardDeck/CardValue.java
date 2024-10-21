@@ -3,24 +3,24 @@ package com.prime.cardDeck;
 import lombok.Getter;
 
 public enum CardValue {
-    ACE(1),
-    TWO(2),
-    THREE(3),
-    FOUR(4),
-    FIVE(5),
-    SIX(6),
-    SEVEN(7),
-    EIGHT(8),
-    NINE(9),
-    TEN(10),
-    JACK(10),
-    QUEEN(10),
-    KING(10);
+    ACE(new Integer[]{1,11}),
+    TWO(new Integer[]{2}),
+    THREE(new Integer[]{3}),
+    FOUR(new Integer[]{4}),
+    FIVE(new Integer[]{5}),
+    SIX(new Integer[]{6}),
+    SEVEN(new Integer[]{7}),
+    EIGHT(new Integer[]{8}),
+    NINE(new Integer[]{9}),
+    TEN(new Integer[]{10}),
+    JACK(new Integer[]{10}),
+    QUEEN(new Integer[]{10}),
+    KING(new Integer[]{10});
 
     @Getter
-    private final int value;
+    private final Integer[] value;
 
-    private CardValue(int value) {
+    private CardValue(Integer[] value) {
         this.value = value;
     }
 }

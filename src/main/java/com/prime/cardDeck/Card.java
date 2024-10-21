@@ -10,6 +10,10 @@ public class Card {
     private final CardValue cardValue;
 
 
+    public Integer[] getCardValues() {
+        return cardValue.getValue();
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

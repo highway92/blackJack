@@ -8,17 +8,6 @@ public class Deck {
 
     private Card[] cards = new Card[numberOfCards];
 
-    private void init() {
-        int i = 0;
-        for(TrumpSign trumpSign : TrumpSign.values()) {
-            for(CardValue cardValue : CardValue.values()) {
-                cards[i] = new Card(trumpSign, cardValue);
-                i++;
-            }
-        }
-        this.shuffle();
-    }
-
     public void shuffle() {
         this.cardSequence = 0;
         Random random = new Random();
@@ -43,7 +32,14 @@ public class Deck {
     }
 
     public Deck() {
-        this.init();
+        int i = 0;
+        for(TrumpSign trumpSign : TrumpSign.values()) {
+            for(CardValue cardValue : CardValue.values()) {
+                cards[i] = new Card(trumpSign, cardValue);
+                i++;
+            }
+        }
+        this.shuffle();
     }
 
 
