@@ -9,13 +9,24 @@ import java.util.List;
 
 @NoArgsConstructor
 public class Dealer {
+    private Card hiddenCard;
     private final List<Card> hand = new ArrayList<Card>();
+
+    public void getHiddenCard(Card card) {
+        this.hiddenCard = card;
+    }
 
     public void hit(Card card) {
         hand.add(card);
     }
 
-    public Integer getValueOfCards() {
+    private Integer getPublicCardValue() {
         return hand.stream().map(Card::getCardValue).map(CardValue::getValue).reduce(0, Integer::sum);
+    }
+
+    public Integer getScore() {
+        Integer hiddenCardValue = hiddenCard.getCardValue().getValue();
+        Integer publicCardValue = getPublicCardValue();
+        return publicCardValue + hiddenCardValue;
     }
 }

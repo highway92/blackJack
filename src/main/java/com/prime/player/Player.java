@@ -36,4 +36,8 @@ public class Player {
     public List<Card> getHand() {
         return List.copyOf(hand);
     }
+
+    public Integer getScore() {
+        return hand.stream().map(Card::getCardValue).map(CardValue::getValue).reduce(0,Integer::sum);
+    }
 }
