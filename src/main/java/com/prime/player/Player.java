@@ -1,6 +1,7 @@
 package com.prime.player;
 
 import com.prime.cardDeck.Card;
+import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 public class Player {
     private final String name;
     private final List<Card> hand = new ArrayList<>();
+    @Getter(AccessLevel.NONE)
     private List<Integer> handScore = new ArrayList<>();
     private boolean done = false;
 
