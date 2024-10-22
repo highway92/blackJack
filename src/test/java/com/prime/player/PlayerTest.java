@@ -64,10 +64,10 @@ class PlayerTest {
         Player sut = new Player("p1");
         Card jack = new Card(TrumpSign.DIAMOND, CardValue.JACK);
         Card queen = new Card(TrumpSign.DIAMOND, CardValue.QUEEN);
-        Card ace = new Card(TrumpSign.DIAMOND, CardValue.FOUR);
+        Card four = new Card(TrumpSign.DIAMOND, CardValue.FOUR);
         sut.hit(jack);
         sut.hit(queen);
-        sut.hit(ace);
+        sut.hit(four);
         assertEquals(true, sut.isBusted());
     }
 }

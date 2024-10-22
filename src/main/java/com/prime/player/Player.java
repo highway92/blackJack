@@ -32,7 +32,7 @@ public class Player {
         handScore = tempHandValues.stream().filter(value -> value <= 21).collect(Collectors.toCollection(ArrayList::new));
         if(isBusted()) {
             done = true;
-            System.out.println("Busted!" + name + "'s turn end. ^0^");
+            System.out.println("Busted! " + name + "'s turn end. ^0^");
         }
     }
 
