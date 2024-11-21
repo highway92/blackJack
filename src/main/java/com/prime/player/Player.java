@@ -21,15 +21,16 @@ public class Player {
         this.handScore.add(0);
     }
 
-    public void printStatus() {
-        System.out.println("Player :" + name);
-        System.out.println("Hand :  " + getHand().toString());
-        System.out.println("HandScore : " + getScore().toString());
+    public String getStatus() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Player :").append(name).append("\n");
+        builder.append("Hand :  ").append(getHand().toString()).append("\n");
+        builder.append("HandScore : ").append(getScore().toString()).append("\n");
+        return builder.toString();
     }
 
     public void hit(Card card) {
-        if(done) {
-            System.out.println("Error occurred Player " + name + "'s turn is over");
+        if(done || isBusted()) {
             return;
         }
         hand.add(card);
@@ -40,10 +41,6 @@ public class Player {
             }
         }
         handScore = tempHandValues.stream().filter(value -> value <= 21).collect(Collectors.toCollection(ArrayList::new));
-        if(isBusted()) {
-            done = true;
-            System.out.println("Busted! " + name + "'s turn end. ^0^");
-        }
     }
 
     public void stay() {

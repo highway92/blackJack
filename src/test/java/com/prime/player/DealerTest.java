@@ -1,5 +1,6 @@
 package com.prime.player;
 
+import com.prime.Dealer.Dealer;
 import com.prime.cardDeck.Card;
 import com.prime.cardDeck.CardValue;
 import com.prime.cardDeck.TrumpSign;

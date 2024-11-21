@@ -1,19 +1,38 @@
-package com.prime.player;
+package com.prime.Dealer;
 
 import com.prime.cardDeck.Card;
 import com.prime.cardDeck.CardValue;
-import lombok.NoArgsConstructor;
+import com.prime.cardDeck.Deck;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Dealer {
     private final List<Card> hand = new ArrayList<Card>();
     private List<Integer> handScore = new ArrayList<Integer>(List.of(0));
 
+    public String getPublicStatus() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Dealer: \n");
+        builder.append("Hand : ").append(getPublicCard());
+        return builder.toString();
+    }
+
+    public String getFullStatus() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Dealer: \n");
+        builder.append("Hand : ").append(List.copyOf(hand)).append('\n');
+        builder.append("Score : ").append(getScore());
+        return builder.toString();
+    }
+
     public void hit(Card card) {
+        if(isBusted()) {
+            return;
+        }
         hand.add(card);
         List<Integer> tempHandValues = new ArrayList<>();
         for (Integer cardValue : card.getCardValues()) {
@@ -22,9 +41,6 @@ public class Dealer {
             }
         }
         handScore = tempHandValues.stream().filter(value -> value <= 21).collect(Collectors.toCollection(ArrayList::new));
-        if(isBusted()) {
-            System.out.println("Dealer Busted!");
-        }
     }
 
     public boolean isSoftSeventeen() {
@@ -52,4 +68,5 @@ public class Dealer {
     public Integer getScore() {
         return handScore.stream().max(Integer::compare).orElse(-1);
     }
+
 }

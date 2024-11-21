@@ -1,6 +1,6 @@
 package com.prime.player;
 
-public enum Action {
+public enum PlayerCommand {
     HIT,
     STAY,
     SHOW;
