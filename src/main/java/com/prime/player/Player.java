@@ -21,7 +21,17 @@ public class Player {
         this.handScore.add(0);
     }
 
+    public void printStatus() {
+        System.out.println("Player :" + name);
+        System.out.println("Hand :  " + getHand().toString());
+        System.out.println("HandScore : " + getScore().toString());
+    }
+
     public void hit(Card card) {
+        if(done) {
+            System.out.println("Error occurred Player " + name + "'s turn is over");
+            return;
+        }
         hand.add(card);
         List<Integer> tempHandValues = new ArrayList<>();
         for (Integer cardValue : card.getCardValues()) {

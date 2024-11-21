@@ -1,7 +1,7 @@
 package com.prime.gameBoard;
 
-import com.prime.cardDeck.Card;
 import com.prime.cardDeck.Deck;
+import com.prime.player.Action;
 import com.prime.player.Dealer;
 import com.prime.player.Player;
 
@@ -10,27 +10,22 @@ import java.util.List;
 
 public class GameBoard {
 
-    private List<Player> players = new ArrayList<Player>();
-    private Deck deck = new Deck();
-    private Controller controller;
-    private Dealer dealer;
+    private final List<Player> players = new ArrayList<>();
+    private final Deck deck = new Deck();
+    private final Controller controller;
+    private final Dealer dealer;
 
     public GameBoard(Controller controller, Dealer dealer) {
         this.controller = controller;
         this.dealer = dealer;
         gatherPlayers();
         prepareGameStart();
-
     }
 
     public void gatherPlayers() {
         System.out.println("Gathering players for Black Jack");
         boolean isGatheringEnd = false;
-        while (!isGatheringEnd){
-            if(players.size() >= 4) {
-                isGatheringEnd = true;
-                break;
-            }
+        while (players.size() <= 4 && !isGatheringEnd) {
             Player newPlayer = new Player(controller.addPlayerName());
             players.add(newPlayer);
             boolean addMorePlayer = controller.addMorePlayer();
@@ -62,5 +57,28 @@ public class GameBoard {
             throw new RuntimeException(e);
         }
     }
+
+    public void playersTurn() {
+        try {
+            for(Player player : players) {
+                System.out.println(player.getName() + "'s turn");
+                while(!player.isDone()) {
+                    player.printStatus();
+                    Action action = controller.hitOrStay(player);
+                    if (action.equals(Action.HIT)) {
+                        player.hit(deck.pickCard());
+                    } else if (action.equals(Action.STAY)) {
+                        player.stay();
+                    } else {
+                        player.printStatus();
+                    }
+                }
+                System.out.println(player.getName() + "'s turn end o(*^＠^*)o ");
+            }
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

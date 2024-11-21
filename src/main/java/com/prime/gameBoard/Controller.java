@@ -1,4 +1,8 @@
 package com.prime.gameBoard;
+import com.prime.player.Action;
+import com.prime.player.Player;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
@@ -23,8 +27,7 @@ public class Controller {
 
     public boolean addMorePlayer() {
         while (true) {
-            String addMorePlayerQuestion = "Do you want to add more player? (y/n)";
-            System.out.println(addMorePlayerQuestion);
+            System.out.println("Do you want to add more player? (y/n)");
             String answer = inputReader.readInput();
 
             if (answer.equals("yes") || answer.equals("y")) {
@@ -43,5 +46,23 @@ public class Controller {
         System.out.println(addPlayerNameQuestion);
         String playerName = inputReader.readInput();
         return playerName;
+    }
+
+    public Action hitOrStay (Player player) {
+        while(!player.isDone()) {
+            System.out.println("Do you want hit or stay? (hit/stay/show)");
+            String answer = inputReader.readInput();
+            if (answer.equals("hit")) {
+                return Action.HIT;
+            }
+            if (answer.equals("stay")) {
+                return Action.STAY;
+            }
+            if (answer.equals("show")) {
+                return Action.SHOW;
+            }
+            System.out.println("Invalid input detected. Please try again.");
+        }
+        return Action.SHOW;
     }
 }
