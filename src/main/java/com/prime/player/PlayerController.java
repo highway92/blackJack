@@ -1,5 +1,6 @@
 package com.prime.player;
 
+import com.prime.Dealer.Dealer;
 import com.prime.cardDeck.Deck;
 import com.prime.gameBoard.InputReader;
 
@@ -52,10 +53,12 @@ public class PlayerController {
         }
     }
 
-    private void doTurn(Player player, Deck deck) {
+    private void doTurn(Player player, Dealer dealer, Deck deck) {
         try {
             Thread.sleep(1000);
             System.out.println(player.getName() + "'s turn");
+            System.out.println("Here is Dealr"+"'s Hand");
+            System.out.println(dealer.getPublicStatus());
             while(!player.isDone()) {
                 if(player.isBusted()) {
                     System.out.println(player.getName() + "'s turn is over");
@@ -71,6 +74,7 @@ public class PlayerController {
                 }
                 if(command == PlayerCommand.SHOW) {
                     System.out.println(player.getStatus());
+                    System.out.println(dealer.getPublicStatus());
                 }
             }
         } catch(Exception e) {
@@ -79,9 +83,9 @@ public class PlayerController {
 
     }
 
-    public void doEachPlayerTurn(Deck deck) {
+    public void doEachPlayerTurn(Dealer dealer, Deck deck) {
         for(Player player : players) {
-            doTurn(player, deck);
+            doTurn(player, dealer, deck);
         }
     }
 
