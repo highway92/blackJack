@@ -19,7 +19,7 @@ public class GameBoardController {
         private final Scanner scanner = new Scanner(System.in);
 
         public String readInput() {
-            return scanner.next();
+            return scanner.nextLine();
         }
     }
 
@@ -72,8 +72,7 @@ public class GameBoardController {
             String answer = inputReader.readInput();
             if (answer.equals("yes") || answer.equals("y")) {
                 addPlayer();
-            }
-            if (answer.equals("no") || answer.equals("n")) {
+            }else if (answer.equals("no") || answer.equals("n")) {
                 break;
             } else {
                 System.out.println("Invalid input detected. Please try again.");
